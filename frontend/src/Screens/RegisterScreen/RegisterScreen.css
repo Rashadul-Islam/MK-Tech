@@ -1,0 +1,133 @@
+.font_style {
+  font-weight: 500;
+  color: #6b6b6b;
+}
+
+.radio_button {
+  margin-top: 2px;
+  margin-right: 20px;
+}
+
+.email input[type="email"] {
+  padding-left: 35px;
+}
+
+.email {
+  position: relative;
+}
+
+.email .i {
+  position: absolute;
+  left: 12px;
+  top: 9px;
+  font-size: 20px;
+  color: #aaa;
+  transition: 0.3s;
+}
+
+.comment input[type="text"] {
+  padding-left: 35px;
+}
+
+.comment {
+  position: relative;
+}
+
+.comment .i {
+  position: absolute;
+  left: 12px;
+  top: 9px;
+  font-size: 20px;
+  color: #aaa;
+  transition: 0.3s;
+}
+.comment .j {
+  position: absolute;
+  right: 12px;
+  top: 2px;
+  font-size: 20px;
+  color: #aaa;
+  transition: 0.3s;
+}
+
+.password input[type="password"] {
+  padding-left: 35px;
+}
+
+.password {
+  position: relative;
+}
+
+.password .i {
+  position: absolute;
+  left: 12px;
+  top: 8px;
+  font-size: 20px;
+  color: #aaa;
+  transition: 0.3s;
+}
+
+.link-style {
+  text-decoration: none;
+  color: blue;
+}
+
+.Sign_button {
+  margin-top: 15px;
+  margin-bottom: 8px;
+  width: 40%;
+  border-radius: 10px;
+  font-weight: bold;
+  margin-left: 60%;
+}
+
+.bottom_text {
+  font-size: 1.5ch;
+  font-weight: 500;
+  color: cadetblue;
+}
+
+.bottom_text span {
+  color: blue;
+}
+.signup_form {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .signup_form {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .main_login {
+    border: 1px solid #e8e8e8;
+    padding: 5%;
+    border-radius: 10px;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .signup_form {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media only screen and (min-device-width: 280px) and (max-device-width: 653px) {
+  .signup_form {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .main_login {
+    border: 1px solid #e8e8e8;
+    padding: 5%;
+    border-radius: 10px;
+    width: 100%;
+  }
+}

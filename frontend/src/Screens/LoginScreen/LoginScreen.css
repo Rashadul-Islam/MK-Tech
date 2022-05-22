@@ -1,0 +1,92 @@
+.sign {
+  text-decoration: none;
+  font-weight: 550;
+  color: #b8b8b8;
+  display: inline-block;
+  position: relative;
+  margin: 0;
+}
+
+.form_heading {
+  color: #6b6b6b;
+  font-weight: 600;
+  font-size: 13px;
+  padding-bottom: 15px;
+}
+.new_sign {
+  color: #00a4e7;
+  border-color: #00a4e7;
+}
+.submit_button {
+  margin-top: 30px;
+  background-color: #008593;
+  border-color: #008593;
+  width: 150px;
+  float: right;
+}
+.submit_button:hover {
+  background-color: #008593;
+  border-color: #008593;
+}
+.main_login {
+  border: 1px solid #e8e8e8;
+  padding: 5%;
+  border-radius: 10px;
+  width: 70%;
+}
+.login_form_main {
+  width: 50%;
+}
+.underline:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #0087ca;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.main_content {
+  height: 78vh;
+}
+
+.middle-div {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.underline:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+@media screen and (max-width: 600px) {
+  .main_login {
+    width: 90%;
+  }
+  .login_form_main {
+    width: 100%;
+  }
+  .submit_button {
+    margin-top: 10px;
+    float: right;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) {
+  .main_login {
+    width: 95%;
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-height: 1366px) and (-webkit-min-device-pixel-ratio: 1.5) and (hover: none) {
+  .main_login {
+    width: 85%;
+  }
+}
