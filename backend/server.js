@@ -8,6 +8,7 @@ import connectDB from "./config/db.js";
 import cors from "cors";
 import userRoutes from "./routes/userRoutes.js";
 import enrollRoutes from "./routes/enrollRoutes.js";
+import projectRoutes from "./routes/projectRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -29,6 +30,7 @@ app.use(express.json());
 
 app.use("/api/users", userRoutes);
 app.use("/api/enrolled", enrollRoutes);
+app.use("/api/project", projectRoutes)
 
 
 app.use("/uploads", express.static("uploads"));

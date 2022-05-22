@@ -3,15 +3,15 @@ import Enroll from "../models/enrollModel.js";
 
 const createEnroll = asyncHandler(async (req, res) => {
     const {
-        student,
-        teacher,
-        courseId
+        project,
+        member,
+        status
     } = req.body;
 
     const enroll = await Enroll.create({
-        student,
-        teacher,
-        courseId
+        project,
+        member,
+        status
     })
     if (enroll) {
         res.status(201).json({
@@ -19,13 +19,13 @@ const createEnroll = asyncHandler(async (req, res) => {
         });
     } else {
         res.status(401);
-        throw new Error("Failed to create course");
+        throw new Error("Failed to Enroll !!!");
     }
 });
 
 
 const getEnroll = asyncHandler(async (req, res) => {
-    const enroll = await Enroll.find({ student: req.params.id })
+    const enroll = await Enroll.find({ member: req.params.id })
 
     if (enroll) {
         res.status(201).json({
@@ -37,26 +37,12 @@ const getEnroll = asyncHandler(async (req, res) => {
     }
 });
 
-const enrollDetails = asyncHandler(async (req, res) => {
-    const enroll = await Enroll.aggregate([{
-        $match: {
-            student: req.params.id
-        },
-    },
-    {
-        $lookup: {
-            from: "tutors",
-            localField: "teacher",
-            foreignField: "user",
-            as: "detail"
-        }
-    },
-    { $unwind: "$detail" }
-    ])
+const getApplied = asyncHandler(async (req, res) => {
+    const applied = await Enroll.find({ status: 0, student: req.params.id }).populate("project")
 
-    if (enroll) {
+    if (applied) {
         res.status(201).json({
-            enroll
+            applied
         });
     } else {
         res.status(401);
@@ -64,50 +50,4 @@ const enrollDetails = asyncHandler(async (req, res) => {
     }
 });
 
-const getQuestion = asyncHandler(async (req, res) => {
-    const enroll = await Enroll.aggregate([{
-        $match: {
-            student: req.params.id
-        },
-    },
-    { $addFields: { course_Id: { $toObjectId: "$courseId" } } },
-    {
-        $lookup: {
-            from: "mcqs",
-            localField: "courseId",
-            foreignField: "courseId",
-            as: "detail"
-        }
-    },
-    { $unwind: "$detail" },
-    {
-        $lookup: {
-            from: "courses",
-            localField: "course_Id",
-            foreignField: "_id",
-            as: "course"
-        }
-    },
-    { $unwind: "$course" },
-    {
-        $project:{
-            title:"$course.title",
-            classLevel: "$course.courseLevel",
-            topic:"$course.topic",
-            create:"$detail.createdAt",
-            question:"$detail.questions"
-        }
-    }
-    ])
-
-    if (enroll) {
-        res.status(201).json({
-            enroll
-        });
-    } else {
-        res.status(401);
-        throw new Error("Failed to create course");
-    }
-});
-
-export { createEnroll, getEnroll, enrollDetails, getQuestion };
+export { createEnroll, getEnroll, getApplied };

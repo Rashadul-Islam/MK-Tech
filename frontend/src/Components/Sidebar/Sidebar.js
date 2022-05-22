@@ -14,7 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import './Sidebar.css'
 import QuizIcon from '@mui/icons-material/Quiz';
-import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
+import CloudDoneIcon from '@mui/icons-material/CloudDone';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -32,6 +32,9 @@ import MemberDashboard from '../../Screens/MemberDashboard/MemberDashboard';
 import { AppBar, Typography } from '@mui/material';
 import CreateProject from '../../Screens/CreateProject/CreateProject';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import MemberRequest from '../../Screens/MemberRequest';
+import ProjectList from '../../Screens/ProjectList/ProjectList';
+import AppliedProject from '../../Screens/AppliedProject/AppliedProject';
 
 const drawerWidth = 240;
 
@@ -56,7 +59,7 @@ function ResponsiveDrawer(props) {
             <Divider />
             <List>
                 <>
-                    <ListItem button component={Link} to="/dashboard">
+                    <ListItem button component={Link} to={`${url}`}>
                         <ListItemIcon>
                             <DashboardIcon />
                         </ListItemIcon>
@@ -71,17 +74,17 @@ function ResponsiveDrawer(props) {
                     {
                         role === "member" &&
                         <>
-                            <ListItem button component={url} to="/allCourse">
+                            <ListItem button component={Link} to={`${url}/projects`}>
                                 <ListItemIcon>
                                     <FormatListBulletedIcon />
                                 </ListItemIcon>
-                                <ListItemText className='item_hover' primary="All Course" />
+                                <ListItemText className='item_hover' primary="Projects" />
                             </ListItem>
-                            <ListItem button component={Link} to="/enrolledCourses">
+                            <ListItem button component={Link} to={`${url}/applied`}>
                                 <ListItemIcon>
-                                    <SubscriptionsIcon />
+                                    <CloudDoneIcon />
                                 </ListItemIcon>
-                                <ListItemText className='item_hover' primary="Enrolled Courses" />
+                                <ListItemText className='item_hover' primary="Applied Project" />
                             </ListItem>
                             <ListItem button component={Link} to="/exam">
                                 <ListItemIcon>
@@ -101,11 +104,11 @@ function ResponsiveDrawer(props) {
                                 </ListItemIcon>
                                 <ListItemText className='item_hover' primary="Create Project" />
                             </ListItem>
-                            <ListItem button component={Link} to="/allStudents">
+                            <ListItem button component={Link} to={`${url}/memberRequest`}>
                                 <ListItemIcon>
                                     <SchoolIcon />
                                 </ListItemIcon>
-                                <ListItemText className='item_hover' primary="All Student" />
+                                <ListItemText className='item_hover' primary="Member Request" />
                             </ListItem>
                         </>
                     }
@@ -189,8 +192,17 @@ function ResponsiveDrawer(props) {
                     <Route exact path={`${path}`}>
                         <MemberDashboard />
                     </Route>
-                    <ProtectedRoute path={`${path}`}>
+                    <ProtectedRoute path={`${path}/createProject`}>
                         <CreateProject />
+                    </ProtectedRoute>
+                    <ProtectedRoute path={`${path}/memberRequest`}>
+                        <MemberRequest />
+                    </ProtectedRoute>
+                    <ProtectedRoute path={`${path}/projects`}>
+                        <ProjectList />
+                    </ProtectedRoute>
+                    <ProtectedRoute path={`${path}/applied`}>
+                        <AppliedProject />
                     </ProtectedRoute>
                 </Switch>
             </Box>

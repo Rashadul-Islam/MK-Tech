@@ -2,17 +2,19 @@ import mongoose from 'mongoose';
 
 const enrollSchema = mongoose.Schema(
     {
-        student: {
-            type: String,
+        project: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Project",
             required: true
         },
-        teacher: {
-            type: String,
+        member: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
             required: true
         },
-        courseId: {
-            type: String,
-            required: true,
+        status: {
+            type: Number,
+            required: true
         }
     },
     {
