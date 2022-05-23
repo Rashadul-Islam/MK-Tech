@@ -20,8 +20,11 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { logout } from "../../actions/userActions";
 import { useDispatch, useSelector } from 'react-redux';
-import SchoolIcon from '@mui/icons-material/School';
+import RequestPageIcon from '@mui/icons-material/RequestPage';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import PendingIcon from '@mui/icons-material/Pending';
 import {
     Switch,
     Route,
@@ -32,9 +35,16 @@ import MemberDashboard from '../../Screens/MemberDashboard/MemberDashboard';
 import { AppBar, Typography } from '@mui/material';
 import CreateProject from '../../Screens/CreateProject/CreateProject';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import MemberRequest from '../../Screens/MemberRequest';
 import ProjectList from '../../Screens/ProjectList/ProjectList';
 import AppliedProject from '../../Screens/AppliedProject/AppliedProject';
+import MemberRequest from '../../Screens/MemberRequest/MemberRequest';
+import FinishProject from '../../Screens/FinishProject/FinishProject';
+import ProgressMember from '../../Screens/ProgressMember/ProgressMember';
+import CompleteProject from '../../Screens/CompleteProject/CompleteProject';
+import CompleteProjectMember from '../../Screens/CompleteProjectMember/CompleteProjectMember';
+import OpenProject from '../../Screens/OpenProject/OpenProject';
+import MemberProgress from '../../Screens/MemberProgress/MemberProgress';
+import MemberComplete from '../../Screens/MemberComplete/MemberComplete';
 
 const drawerWidth = 240;
 
@@ -86,11 +96,17 @@ function ResponsiveDrawer(props) {
                                 </ListItemIcon>
                                 <ListItemText className='item_hover' primary="Applied Project" />
                             </ListItem>
-                            <ListItem button component={Link} to="/exam">
+                            <ListItem button component={Link} to={`${url}/ProgressProject`}>
                                 <ListItemIcon>
-                                    <QuizIcon />
+                                    <PendingIcon />
                                 </ListItemIcon>
-                                <ListItemText className='item_hover' primary="Exam" />
+                                <ListItemText className='item_hover' primary="Progress Project" />
+                            </ListItem>
+                            <ListItem button component={Link} to={`${url}/completedProject`}>
+                                <ListItemIcon>
+                                    <CloudDoneIcon />
+                                </ListItemIcon>
+                                <ListItemText className='item_hover' primary="Completed Project" />
                             </ListItem>
                         </>
                     }
@@ -106,9 +122,27 @@ function ResponsiveDrawer(props) {
                             </ListItem>
                             <ListItem button component={Link} to={`${url}/memberRequest`}>
                                 <ListItemIcon>
-                                    <SchoolIcon />
+                                    <RequestPageIcon />
                                 </ListItemIcon>
                                 <ListItemText className='item_hover' primary="Member Request" />
+                            </ListItem>
+                            <ListItem button component={Link} to={`${url}/openProject`}>
+                                <ListItemIcon>
+                                    <CheckCircleIcon />
+                                </ListItemIcon>
+                                <ListItemText className='item_hover' primary="Open Project" />
+                            </ListItem>
+                            <ListItem button component={Link} to={`${url}/manageProject`}>
+                                <ListItemIcon>
+                                    <ManageAccountsIcon />
+                                </ListItemIcon>
+                                <ListItemText className='item_hover' primary="Manage Project" />
+                            </ListItem>
+                            <ListItem button component={Link} to={`${url}/complete`}>
+                                <ListItemIcon>
+                                    <CheckCircleIcon />
+                                </ListItemIcon>
+                                <ListItemText className='item_hover' primary="Complete Project" />
                             </ListItem>
                         </>
                     }
@@ -203,6 +237,27 @@ function ResponsiveDrawer(props) {
                     </ProtectedRoute>
                     <ProtectedRoute path={`${path}/applied`}>
                         <AppliedProject />
+                    </ProtectedRoute>
+                    <ProtectedRoute path={`${path}/manageProject`}>
+                        <FinishProject />
+                    </ProtectedRoute>
+                    <ProtectedRoute path={`${path}/projectMember/:id`}>
+                        <ProgressMember />
+                    </ProtectedRoute>
+                    <ProtectedRoute path={`${path}/complete`}>
+                        <CompleteProject />
+                    </ProtectedRoute>
+                    <ProtectedRoute path={`${path}/completeProject/:id`}>
+                        <CompleteProjectMember />
+                    </ProtectedRoute>
+                    <ProtectedRoute path={`${path}/openProject`}>
+                        <OpenProject />
+                    </ProtectedRoute>
+                    <ProtectedRoute path={`${path}/progressProject`}>
+                        <MemberProgress />
+                    </ProtectedRoute>
+                    <ProtectedRoute path={`${path}/completedProject`}>
+                        <MemberComplete />
                     </ProtectedRoute>
                 </Switch>
             </Box>

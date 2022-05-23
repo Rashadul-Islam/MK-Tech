@@ -14,7 +14,7 @@ const AppliedProject = () => {
                 'Content-type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
-            body: JSON.stringify({ state: 0, member: id })
+            body: JSON.stringify({ status: 0, member: id })
         })
             .then(res => res.json())
             .then(data => setAppliedProject(data?.applied))

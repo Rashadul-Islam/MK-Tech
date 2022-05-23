@@ -7,8 +7,6 @@ import Homepage from "./Screens/Homepage/Homepage";
 import { useSelector } from "react-redux";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import Sidebar from "./Components/Sidebar/Sidebar";
-import CreateProject from "./Screens/CreateProject/CreateProject";
-import MemberRequest from "./Screens/MemberRequest";
 
 function App() {
   const role = useSelector((state) =>

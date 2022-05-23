@@ -29,7 +29,7 @@ const RegisterScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      history("/dashboard");
+      history.push("/dashboard");
     }
     // eslint-disable-next-line
   }, [userInfo]);
